@@ -1,4 +1,5 @@
 pipeline {
+
     agent {
         label "ansiblenode"
     }
@@ -9,4 +10,5 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Swaroop-751/Jenkins-Dockerfile.git'
             }
         }
+    }
 }
