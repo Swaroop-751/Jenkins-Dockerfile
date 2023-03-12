@@ -13,8 +13,9 @@ pipeline {
 
      stage('Build Docker Image') {
             steps {
-		sh 'sudo docker rmi urldetector:v1.20'
-		sh 'sudo docker rmi swar2001/urldetector:v1.20'
+		sh 'sudo docker rmi urldetector:v1.21'
+		sh 'sudo docker rmi swar2001/urldetector:v1.21'
+		sh 'sudo docker rmi swar2001/urldetector:latest'
                 sh 'cd /home/ec2-user/jenkinsws/workspace/urldetector && sudo docker build -t $JOB_NAME:v1.$BUILD_ID .'
 		sh 'sudo docker images'
             }
@@ -38,5 +39,14 @@ pipeline {
                 
             }
 	}
+
+	stage('Push Docker Image to Docker Hub') {
+            steps{
+               	sh 'sudo docker image push swar2001/$JOB_NAME:v1.$BUILD_ID'
+                sh 'sudo docker image push swar2001/$JOB_NAME:latest'
+	        	sh 'sudo docker rmi swar2001/$JOB_NAME:v1.$BUILD_ID'
+	        	sh 'sudo docker rmi swar2001/$JOB_NAME:latest'	
+            }
+        }
     }
 }
