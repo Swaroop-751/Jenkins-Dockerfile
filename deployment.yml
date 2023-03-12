@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webcontainer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: webcontainer
+  template:
+    metadata:
+      labels:
+        app: webcontainer
+    spec:
+      containers:
+        - name: webcontainer
+          image: swar2001/urldetector:v1.34
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              cpu: 200m
+            limits:
+              cpu: 210m
