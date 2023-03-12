@@ -3,9 +3,9 @@ pipeline {
         label "ansiblenode"
     }
     stages {
-        stage('Hello') {
+         stage('Pull the Dockerfile From Github') {
             steps {
-                echo 'Hello World'
+                git branch: 'main', url: 'https://github.com/Swaroop-751/Jenkins-Dockerfile.git'
             }
         }
     }
