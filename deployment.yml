@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: webcontainer
-          image: swar2001/urldetector:v1.36
+          image: swar2001/urldetector:v1.37
           ports:
             - containerPort: 5000
           resources:
